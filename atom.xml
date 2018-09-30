@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sidfate.github.io/"/>
-  <updated>2018-09-30T01:43:34.447Z</updated>
+  <updated>2018-09-30T02:06:09.963Z</updated>
   <id>https://sidfate.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://sidfate.github.io/2018/09/30/share2/"/>
     <id>https://sidfate.github.io/2018/09/30/share2/</id>
     <published>2018-09-30T01:31:28.000Z</published>
-    <updated>2018-09-30T01:43:34.447Z</updated>
+    <updated>2018-09-30T02:06:09.963Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h3><p>关键词:</p><ul><li>XSS</li><li>html渲染</li><li>前端安全</li></ul><a id="more"></a><h3 id="0x01-概念"><a href="#0x01-概念" class="headerlink" title="0x01 概念"></a>0x01 概念</h3><p>“跨站脚本攻击”（Cross Site Scripting)</p><p>第一种分类方式：</p><ol><li>非持久型攻击<br> 顾名思义，非持久型xss攻击是一次性的，仅对当次的页面访问产生影响。非持久型xss攻击要求用户访问一个被攻击者篡改后的链接，用户访问该链接时，被植入的攻击脚本被用户游览器执行，从而达到攻击目的。</li><li>持久型攻击<br> 持久型xss，会把攻击者的数据存储在服务器端，攻击行为将伴随着攻击数据一直存在。</li></ol><p>第二种分类方式：</p><ol><li><p>反射型：经过后端，不经过数据库</p></li><li><p>存储型：经过后端，经过数据库</p></li><li><p>DOM：不经过后端,DOM—based XSS漏洞是基于文档对象模型Document Objeet Model,DOM)的一种漏洞,dom - xss是通过url传入参数去控制触发的</p></li></ol><h3 id="0x02-总结"><a href="#0x02-总结" class="headerlink" title="0x02 总结"></a>0x02 总结</h3><blockquote><p>“大多数职业（从医生到电工），多年的经验等同于多年的专业知识。但是在软件开发中，技术变化如此之快，你花费了大量时间学习技术和工具，一旦这些技术被取代，你的知识将变得毫无价值，因为它们大部分都是实施的细节。最终，所有这些年，你确实积累了一些一般性的经验，但与具体实施相关的知识，你都不再掌握了。<br>唯一留下的是那些基本的东西，你应该专注于软件开发的核心知识和数学知识，您的这些技能会不断增长，而不是随着技术潮流的变化而消失。”</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h3 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h3><p>关键词:</p><ul><li>XSS</li><li>html渲染</li><li>前端安全</li></ul><a id="more"></a><p><a href="https://xss-game.appspot.com" target="_blank" rel="noopener">一个小游戏</a></p><h3 id="0x01-概念"><a href="#0x01-概念" class="headerlink" title="0x01 概念"></a>0x01 概念</h3><p>“跨站脚本攻击”（Cross Site Scripting)</p><p>第一种分类方式：</p><ol><li>非持久型攻击<br> 顾名思义，非持久型xss攻击是一次性的，仅对当次的页面访问产生影响。非持久型xss攻击要求用户访问一个被攻击者篡改后的链接，用户访问该链接时，被植入的攻击脚本被用户游览器执行，从而达到攻击目的。</li><li>持久型攻击<br> 持久型xss，会把攻击者的数据存储在服务器端，攻击行为将伴随着攻击数据一直存在。</li></ol><p>第二种分类方式：</p><ol><li><p>反射型：经过后端，不经过数据库</p></li><li><p>存储型：经过后端，经过数据库</p></li><li><p>DOM：不经过后端,DOM—based XSS漏洞是基于文档对象模型Document Objeet Model,DOM)的一种漏洞,dom - xss是通过url传入参数去控制触发的</p></li></ol><h3 id="0x02-总结"><a href="#0x02-总结" class="headerlink" title="0x02 总结"></a>0x02 总结</h3><blockquote><p>“大多数职业（从医生到电工），多年的经验等同于多年的专业知识。但是在软件开发中，技术变化如此之快，你花费了大量时间学习技术和工具，一旦这些技术被取代，你的知识将变得毫无价值，因为它们大部分都是实施的细节。最终，所有这些年，你确实积累了一些一般性的经验，但与具体实施相关的知识，你都不再掌握了。<br>唯一留下的是那些基本的东西，你应该专注于软件开发的核心知识和数学知识，您的这些技能会不断增长，而不是随着技术潮流的变化而消失。”</p></blockquote>]]></content>
     
     <summary type="html">
     
