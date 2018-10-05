@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>许多</title>
+  <title>Sidfate</title>
   
-  <subtitle>技术上的许多事</subtitle>
+  <subtitle>sidfate&#39;s blog</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sidfate.github.io/"/>
-  <updated>2018-09-30T02:06:09.963Z</updated>
+  <updated>2018-10-02T04:23:17.675Z</updated>
   <id>https://sidfate.github.io/</id>
   
   <author>
@@ -17,11 +17,32 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>前端篇-走进XSS</title>
-    <link href="https://sidfate.github.io/2018/09/30/share2/"/>
-    <id>https://sidfate.github.io/2018/09/30/share2/</id>
+    <title>扫盲篇 - cookie&amp;session</title>
+    <link href="https://sidfate.github.io/2018/10/02/literacy/cookie-session/"/>
+    <id>https://sidfate.github.io/2018/10/02/literacy/cookie-session/</id>
+    <published>2018-10-02T03:33:42.000Z</published>
+    <updated>2018-10-02T04:23:17.675Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0x00-盲区"><a href="#0x00-盲区" class="headerlink" title="0x00 盲区"></a>0x00 盲区</h3><p>试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。</p><p>我想了下，首先大脑中的经验告诉我cookie是客户端缓存信息的一种方式，session则是放在服务端。但是这种说法总觉得有些牵强，于是下面我们从一个具体的请求出发，来看看它们在实际中是怎么应用的。</p><a id="more"></a><h3 id="0x01-从一个登录的http请求出发"><a href="#0x01-从一个登录的http请求出发" class="headerlink" title="0x01 从一个登录的http请求出发"></a>0x01 从一个登录的http请求出发</h3><!-- 在具体分析请求之前，我们先思考一个问题，在浏览器中，加入我们登录github后，在一定时间段内，我们是不需要重新登录的，也就是说即使关闭了网页或者浏览器，下次进入github还是登录的状态。那么浏览器和github的服务端是怎么实现这种的呢。 --><p>请注意一个前提，http是无状态的协议，无状态导致了服务器不知道客户端处理请求的结果。也就是说我们一个登录流程，用户在网页上输入账号密码并点击登录，浏览器发送登录请求，服务器收到请求并验证用户，记录用户登录状态，然后返回成功登录的信息，最后浏览器收到成功的消息，但是在下次浏览器发送请求时，如果这时候请求没有做特殊的处理，我是无法知道这个用户是否登录的状态。</p><p>在登录请求中，浏览器发送请求后，我们看下服务端做了什么处理：</p><ol><li>设置了session记录当前登录的用户的账号。</li><li>在返回的头信息中有一个特殊头，Set-Cookie，其中包含了sessionId的信息</li></ol><p>sessionId也是服务端自动生成。</p><h3 id="0x02-在app中登录"><a href="#0x02-在app中登录" class="headerlink" title="0x02 在app中登录"></a>0x02 在app中登录</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x00-盲区&quot;&gt;&lt;a href=&quot;#0x00-盲区&quot; class=&quot;headerlink&quot; title=&quot;0x00 盲区&quot;&gt;&lt;/a&gt;0x00 盲区&lt;/h3&gt;&lt;p&gt;试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。&lt;/p&gt;
+&lt;p&gt;我想了下，首先大脑中的经验告诉我cookie是客户端缓存信息的一种方式，session则是放在服务端。但是这种说法总觉得有些牵强，于是下面我们从一个具体的请求出发，来看看它们在实际中是怎么应用的。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="扫盲" scheme="https://sidfate.github.io/categories/%E6%89%AB%E7%9B%B2/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>分享篇 - 走进XSS</title>
+    <link href="https://sidfate.github.io/2018/09/30/share/front-xss/"/>
+    <id>https://sidfate.github.io/2018/09/30/share/front-xss/</id>
     <published>2018-09-30T01:31:28.000Z</published>
-    <updated>2018-09-30T02:06:09.963Z</updated>
+    <updated>2018-10-02T04:29:47.865Z</updated>
     
     <content type="html"><![CDATA[<h3 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h3><p>关键词:</p><ul><li>XSS</li><li>html渲染</li><li>前端安全</li></ul><a id="more"></a><p><a href="https://xss-game.appspot.com" target="_blank" rel="noopener">一个小游戏</a></p><h3 id="0x01-概念"><a href="#0x01-概念" class="headerlink" title="0x01 概念"></a>0x01 概念</h3><p>“跨站脚本攻击”（Cross Site Scripting)</p><p>第一种分类方式：</p><ol><li>非持久型攻击<br> 顾名思义，非持久型xss攻击是一次性的，仅对当次的页面访问产生影响。非持久型xss攻击要求用户访问一个被攻击者篡改后的链接，用户访问该链接时，被植入的攻击脚本被用户游览器执行，从而达到攻击目的。</li><li>持久型攻击<br> 持久型xss，会把攻击者的数据存储在服务器端，攻击行为将伴随着攻击数据一直存在。</li></ol><p>第二种分类方式：</p><ol><li><p>反射型：经过后端，不经过数据库</p></li><li><p>存储型：经过后端，经过数据库</p></li><li><p>DOM：不经过后端,DOM—based XSS漏洞是基于文档对象模型Document Objeet Model,DOM)的一种漏洞,dom - xss是通过url传入参数去控制触发的</p></li></ol><h3 id="0x02-总结"><a href="#0x02-总结" class="headerlink" title="0x02 总结"></a>0x02 总结</h3><blockquote><p>“大多数职业（从医生到电工），多年的经验等同于多年的专业知识。但是在软件开发中，技术变化如此之快，你花费了大量时间学习技术和工具，一旦这些技术被取代，你的知识将变得毫无价值，因为它们大部分都是实施的细节。最终，所有这些年，你确实积累了一些一般性的经验，但与具体实施相关的知识，你都不再掌握了。<br>唯一留下的是那些基本的东西，你应该专注于软件开发的核心知识和数学知识，您的这些技能会不断增长，而不是随着技术潮流的变化而消失。”</p></blockquote>]]></content>
     
@@ -37,47 +58,7 @@
     </summary>
     
     
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://sidfate.github.io/2018/09/22/hello-world/"/>
-    <id>https://sidfate.github.io/2018/09/22/hello-world/</id>
-    <published>2018-09-22T07:45:55.389Z</published>
-    <updated>2018-09-22T07:45:55.389Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.<br><a id="more"></a></p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>test</title>
-    <link href="https://sidfate.github.io/2018/09/22/test/"/>
-    <id>https://sidfate.github.io/2018/09/22/test/</id>
-    <published>2018-09-22T03:01:35.000Z</published>
-    <updated>2018-09-22T07:37:07.870Z</updated>
-    
-    <content type="html"><![CDATA[<p><code>test code</code></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> me = <span class="string">'test'</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;code&gt;test code&lt;/code&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="test" scheme="https://sidfate.github.io/tags/test/"/>
+      <category term="xss" scheme="https://sidfate.github.io/tags/xss/"/>
     
   </entry>
   
