@@ -1831,7 +1831,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #f64d41;
+  background: #06c663;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2822,6 +2822,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
+  background-size: 100% 100%;
 }
 #footer {
   background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
@@ -2844,4 +2845,7 @@ body {
 .tag-cloud-tags a:hover {
   border-bottom: 1px solid #a166ab;
   text-decoration: none;
+}
+#comments {
+  padding: 15px;
 }
