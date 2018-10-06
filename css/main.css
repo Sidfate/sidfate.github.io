@@ -1831,7 +1831,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #a6048e;
+  background: #f64d41;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2814,13 +2814,34 @@ embed {
 #header {
   background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
 }
-#main {
+#header .header-inner {
+  padding: 25px 0;
+}
+body {
   background: url("https://source.unsplash.com/random/1600x900");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
-  background-color: 0 0 0 0.35;
+}
+#footer {
+  background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
 }
 .post-eof {
   display: none;
+}
+#sidebar {
+  background-color: rgba(0,0,0,0.5);
+}
+.post-block.archive,
+.post-block.page {
+  background: #fff;
+  padding: 50px 36px;
+}
+.tag-cloud-tags a {
+  border-bottom: 1px solid #5073b8;
+  text-decoration: none;
+}
+.tag-cloud-tags a:hover {
+  border-bottom: 1px solid #a166ab;
+  text-decoration: none;
 }
