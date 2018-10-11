@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sidfate.github.io/"/>
-  <updated>2018-10-02T04:23:17.675Z</updated>
+  <updated>2018-10-06T14:30:33.686Z</updated>
   <id>https://sidfate.github.io/</id>
   
   <author>
@@ -17,9 +17,25 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>test_car</title>
+    <link href="https://sidfate.github.io/2018/10/06/car/test-car/"/>
+    <id>https://sidfate.github.io/2018/10/06/car/test-car/</id>
+    <published>2018-10-06T14:29:40.000Z</published>
+    <updated>2018-10-06T14:30:33.686Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="car" scheme="https://sidfate.github.io/categories/car/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>扫盲篇 - cookie&amp;session</title>
-    <link href="https://sidfate.github.io/2018/10/02/literacy/cookie-session/"/>
-    <id>https://sidfate.github.io/2018/10/02/literacy/cookie-session/</id>
+    <link href="https://sidfate.github.io/2018/10/02/tech/literacy/cookie-session/"/>
+    <id>https://sidfate.github.io/2018/10/02/tech/literacy/cookie-session/</id>
     <published>2018-10-02T03:33:42.000Z</published>
     <updated>2018-10-02T04:23:17.675Z</updated>
     
@@ -39,8 +55,8 @@
   
   <entry>
     <title>分享篇 - 走进XSS</title>
-    <link href="https://sidfate.github.io/2018/09/30/share/front-xss/"/>
-    <id>https://sidfate.github.io/2018/09/30/share/front-xss/</id>
+    <link href="https://sidfate.github.io/2018/09/30/tech/share/front-xss/"/>
+    <id>https://sidfate.github.io/2018/09/30/tech/share/front-xss/</id>
     <published>2018-09-30T01:31:28.000Z</published>
     <updated>2018-10-05T10:05:39.401Z</updated>
     
