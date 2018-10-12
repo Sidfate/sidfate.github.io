@@ -126,18 +126,18 @@
 
 
 
-<meta name="description" content="0x00 盲区试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。 我想了下，首先大脑中的经验告诉我cookie是客户端缓存信息的一种方式，session则是放在服务端。但是这种说法总觉得有些牵强，于是下面我们从一个具体的请求出发，来看看它们在实际中是怎么应用的。">
+<meta name="description" content="0x00 开始试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。 我想了下，首先大脑中的经验告诉我cookie是客户端缓存信息的一种方式，session则是放在服务端。但是这种说法总觉得有些牵强，于是下面我们从一个具体的请求出发，来看看它们在实际中是怎么应用的。">
 <meta name="keywords" content="技术 艺术 汽车 科技 电影 分享">
 <meta property="og:type" content="article">
 <meta property="og:title" content="扫盲篇 - cookie&amp;session">
 <meta property="og:url" content="https://sidfate.github.io/2018/10/02/tech/literacy/cookie-session/index.html">
 <meta property="og:site_name" content="Sidfate">
-<meta property="og:description" content="0x00 盲区试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。 我想了下，首先大脑中的经验告诉我cookie是客户端缓存信息的一种方式，session则是放在服务端。但是这种说法总觉得有些牵强，于是下面我们从一个具体的请求出发，来看看它们在实际中是怎么应用的。">
+<meta property="og:description" content="0x00 开始试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。 我想了下，首先大脑中的经验告诉我cookie是客户端缓存信息的一种方式，session则是放在服务端。但是这种说法总觉得有些牵强，于是下面我们从一个具体的请求出发，来看看它们在实际中是怎么应用的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-02T04:23:17.675Z">
+<meta property="og:updated_time" content="2018-10-12T09:20:11.581Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="扫盲篇 - cookie&amp;session">
-<meta name="twitter:description" content="0x00 盲区试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。 我想了下，首先大脑中的经验告诉我cookie是客户端缓存信息的一种方式，session则是放在服务端。但是这种说法总觉得有些牵强，于是下面我们从一个具体的请求出发，来看看它们在实际中是怎么应用的。">
+<meta name="twitter:description" content="0x00 开始试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。 我想了下，首先大脑中的经验告诉我cookie是客户端缓存信息的一种方式，session则是放在服务端。但是这种说法总觉得有些牵强，于是下面我们从一个具体的请求出发，来看看它们在实际中是怎么应用的。">
 
 
 
@@ -385,8 +385,6 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
-              
               <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-02T11:33:42+08:00">
                 2018-10-02
               </time>
@@ -406,11 +404,20 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
-              
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/扫盲/" itemprop="url" rel="index">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  /
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/扫盲/" itemprop="url" rel="index">
                     <span itemprop="name">扫盲</span>
                   </a>
                 </span>
@@ -443,8 +450,6 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
                  <span class="leancloud-visitors-count"></span>
              </span>
           
@@ -468,7 +473,7 @@
       
 
       
-        <h3 id="0x00-盲区"><a href="#0x00-盲区" class="headerlink" title="0x00 盲区"></a>0x00 盲区</h3><p>试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。</p>
+        <h3 id="0x00-开始"><a href="#0x00-开始" class="headerlink" title="0x00 开始"></a>0x00 开始</h3><p>试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。</p>
 <p>我想了下，首先大脑中的经验告诉我cookie是客户端缓存信息的一种方式，session则是放在服务端。但是这种说法总觉得有些牵强，于是下面我们从一个具体的请求出发，来看看它们在实际中是怎么应用的。</p>
 <a id="more"></a>
 <h3 id="0x01-从一个登录的http请求出发"><a href="#0x01-从一个登录的http请求出发" class="headerlink" title="0x01 从一个登录的http请求出发"></a>0x01 从一个登录的http请求出发</h3><!-- 在具体分析请求之前，我们先思考一个问题，在浏览器中，加入我们登录github后，在一定时间段内，我们是不需要重新登录的，也就是说即使关闭了网页或者浏览器，下次进入github还是登录的状态。那么浏览器和github的服务端是怎么实现这种的呢。 -->
@@ -617,7 +622,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -628,7 +633,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -639,7 +644,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -701,7 +706,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-盲区"><span class="nav-number">1.</span> <span class="nav-text">0x00 盲区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-从一个登录的http请求出发"><span class="nav-number">2.</span> <span class="nav-text">0x01 从一个登录的http请求出发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-在app中登录"><span class="nav-number">3.</span> <span class="nav-text">0x02 在app中登录</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-开始"><span class="nav-number">1.</span> <span class="nav-text">0x00 开始</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-从一个登录的http请求出发"><span class="nav-number">2.</span> <span class="nav-text">0x01 从一个登录的http请求出发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-在app中登录"><span class="nav-number">3.</span> <span class="nav-text">0x02 在app中登录</span></a></li></ol></div>
             
 
           </div>
