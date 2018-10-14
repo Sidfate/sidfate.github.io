@@ -126,18 +126,18 @@
 
 
 
-<meta name="description" content="0x00 开始试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。 我想了下，首先大脑中的经验告诉我cookie是客户端缓存信息的一种方式，session则是放在服务端。但是这种说法总觉得有些牵强，于是下面我们从一个具体的请求出发，来看看它们在实际中是怎么应用的。">
+<meta name="description" content="试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。">
 <meta name="keywords" content="literacy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="扫盲篇 - cookie&amp;session">
 <meta property="og:url" content="https://sidfate.github.io/2018/10/02/tech/literacy/cookie-session/index.html">
 <meta property="og:site_name" content="Sidfate">
-<meta property="og:description" content="0x00 开始试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。 我想了下，首先大脑中的经验告诉我cookie是客户端缓存信息的一种方式，session则是放在服务端。但是这种说法总觉得有些牵强，于是下面我们从一个具体的请求出发，来看看它们在实际中是怎么应用的。">
+<meta property="og:description" content="试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-14T02:24:17.056Z">
+<meta property="og:updated_time" content="2018-10-14T03:16:59.185Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="扫盲篇 - cookie&amp;session">
-<meta name="twitter:description" content="0x00 开始试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。 我想了下，首先大脑中的经验告诉我cookie是客户端缓存信息的一种方式，session则是放在服务端。但是这种说法总觉得有些牵强，于是下面我们从一个具体的请求出发，来看看它们在实际中是怎么应用的。">
+<meta name="twitter:description" content="试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。">
 
 
 
@@ -473,9 +473,8 @@
       
 
       
-        <h3 id="0x00-开始"><a href="#0x00-开始" class="headerlink" title="0x00 开始"></a>0x00 开始</h3><p>试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。</p>
-<p>我想了下，首先大脑中的经验告诉我cookie是客户端缓存信息的一种方式，session则是放在服务端。但是这种说法总觉得有些牵强，于是下面我们从一个具体的请求出发，来看看它们在实际中是怎么应用的。</p>
-<a id="more"></a>
+        <p>试想一下，如果现在突然有一个面试官问你：什么是Cookie？什么是Session？你会怎么回答。<br><a id="more"></a></p>
+<h3 id="0x00-开始"><a href="#0x00-开始" class="headerlink" title="0x00 开始"></a>0x00 开始</h3><p>我想了下，首先大脑中的经验告诉我cookie是客户端缓存信息的一种方式，session则是放在服务端。但是这种说法总觉得有些牵强，于是下面我们从一个具体的请求出发，来看看它们在实际中是怎么应用的。</p>
 <h3 id="0x01-从一个登录的http请求出发"><a href="#0x01-从一个登录的http请求出发" class="headerlink" title="0x01 从一个登录的http请求出发"></a>0x01 从一个登录的http请求出发</h3><!-- 在具体分析请求之前，我们先思考一个问题，在浏览器中，加入我们登录github后，在一定时间段内，我们是不需要重新登录的，也就是说即使关闭了网页或者浏览器，下次进入github还是登录的状态。那么浏览器和github的服务端是怎么实现这种的呢。 -->
 <p>请注意一个前提，http是无状态的协议，无状态导致了服务器不知道客户端处理请求的结果。也就是说我们一个登录流程，用户在网页上输入账号密码并点击登录，浏览器发送登录请求，服务器收到请求并验证用户，记录用户登录状态，然后返回成功登录的信息，最后浏览器收到成功的消息，但是在下次浏览器发送请求时，如果这时候请求没有做特殊的处理，我是无法知道这个用户是否登录的状态。</p>
 <p>在登录请求中，浏览器发送请求后，我们看下服务端做了什么处理：</p>
@@ -541,6 +540,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/14/tech/php/modernphp-psr/" rel="prev" title="modernphp-psr">
+                modernphp-psr <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -624,7 +627,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -635,7 +638,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -646,7 +649,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
