@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="php,modernphp," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Sidfate" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="PSR是PHP Standards Recommendation（PHP推荐标准），规定了一系列PHP程序的标准方案。">
+<meta name="keywords" content="php,modernphp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ModernPHP PSR">
+<meta property="og:url" content="https://sidfate.github.io/2016/09/13/tech/php/modernphp-psr/index.html">
+<meta property="og:site_name" content="Sidfate">
+<meta property="og:description" content="PSR是PHP Standards Recommendation（PHP推荐标准），规定了一系列PHP程序的标准方案。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-16T10:05:34.379Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ModernPHP PSR">
+<meta name="twitter:description" content="PSR是PHP Standards Recommendation（PHP推荐标准），规定了一系列PHP程序的标准方案。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '4JI2HK0USB',
+      apiKey: '4471ff6607295d666f5a7aeac8b0e33b',
+      indexName: 'sidfate.github.io',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://sidfate.github.io/2016/09/13/tech/php/modernphp-psr/"/>
+
+
+
+
+
+  <title>ModernPHP PSR | Sidfate</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sidfate</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">sidfate's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/categories/tech/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-art">
+          <a href="/categories/art/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-film"></i> <br />
+            
+            艺术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-car">
+          <a href="/categories/car/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-car"></i> <br />
+            
+            汽车
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sidfate.github.io/2016/09/13/tech/php/modernphp-psr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sidfate">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar_10110451.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sidfate">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ModernPHP PSR</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-13T21:44:00+08:00">
+                2016-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tech/" itemprop="url" rel="index">
+                    <span itemprop="name">tech</span>
+                  </a>
+                </span>
+
+                
+                
+                  /
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tech/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/13/tech/php/modernphp-psr/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/09/13/tech/php/modernphp-psr/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/09/13/tech/php/modernphp-psr/" class="leancloud_visitors" data-flag-title="ModernPHP PSR">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>PSR是PHP Standards Recommendation（PHP推荐标准），规定了一系列PHP程序的标准方案。<br><a id="more"></a></p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>PSR是PHP Standards Recommendation（PHP推荐标准）的简称。到目前为止，有四个被广泛认同的标准：</p>
+<ul>
+<li>PSR-1：<a href="http://www.php-fig.org/psr/psr-1/" target="_blank" rel="noopener">基本代码风格</a></li>
+<li>PSR-2：<a href="http://www.php-fig.org/psr/psr-2/" target="_blank" rel="noopener">代码风格指南</a></li>
+<li>PSR-3：<a href="http://www.php-fig.org/psr/psr-3/" target="_blank" rel="noopener">日志记录器接口</a></li>
+<li>PSR-4：<a href="http://www.php-fig.org/psr/psr-4/" target="_blank" rel="noopener">自动加载</a></li>
+</ul>
+<p>也许你还见过PSR-0（自动加载标准），PHP-FIG废弃了该推荐规范，用PSR-4替代了它。</p>
+<h3 id="PSR-1"><a href="#PSR-1" class="headerlink" title="PSR-1"></a>PSR-1</h3><p><strong>php标签</strong></p>
+<p>必须把PHP代码放在&lt;?php ?&gt;或&lt;? ?&gt;标签中。</p>
+<p><strong>编码</strong></p>
+<p>必须使用UTF-8 without BOM的编码。</p>
+<p><strong>目的性</strong></p>
+<p>一个PHP文件可以定义符号（类，性状，函数和常量等），或者执行副作用的操作（例如，生成结果或者处理数据），但是不能同时做这两件事。</p>
+<p><strong>自动加载</strong></p>
+<p>PHP命名空间和类必须遵守PSR-4自动加载器标准。</p>
+<p><strong>类名</strong></p>
+<p>PHP类名必须使用首字母大写的驼峰命名方式，比如UserData。</p>
+<p><strong>常量名</strong></p>
+<p>PHP常量的名称必须全部使用大写字母，必要的话可以使用下划线连接单词，例如PAGE_SIZE。</p>
+<p><strong>方法名</strong></p>
+<p>PHP方法名必须使用首字母小写的驼峰命名方式，比如getUserInfo。</p>
+<h3 id="PSR-2"><a href="#PSR-2" class="headerlink" title="PSR-2"></a>PSR-2</h3><p>PSR-2相对于PSR-1的代码风格更加严格。</p>
+<p><strong>贯彻PSR-1</strong></p>
+<p>使用PSR-2代码风格之前必须先贯彻PSR-1。</p>
+<p><strong>缩进</strong></p>
+<p>这个话题就很热门了，代码的缩进一直分为两个阵营：tab键阵营，多空格阵营。《硅谷》中有一集男女两名程序员正一边编程一边约会，小伙子忍受不了姑娘使用空格键缩进，认为Tab键更节省文件体积，最后愤然离去，声称绝对不会和用空格键缩进的人滚床单，以免孩子面临艰难的人生抉择……可见这个问题在程序员中是比较突出和常见的，PSR-2推荐规范要求PHP代码使用4个空格的缩进。</p>
+<p><strong>文件代码行</strong></p>
+<p>PHP文件必须使用UNIX风格的换行符（LF），最后要有一个空行，而且不能使用PHP关闭标签?&gt;。PHP每行代码不能超过80个字符，至少不能超过120个字符。每行末尾不能有空格。</p>
+<p><strong>关键字</strong></p>
+<p>PHP关键字应该使用小写字母。</p>
+<p><strong>命名空间</strong></p>
+<p>每个命名空间声明语句后必须跟着一个空行，类似的，使用use导入命名空间的语句后面也要加一个空行。下面是一个示例：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;php</span><br><span class="line"><span class="keyword">namespace</span> <span class="title">My</span>\<span class="title">Component</span>;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">use</span> <span class="title">Symfony</span>\<span class="title">Components</span>\<span class="title">HttpFoundation</span>\<span class="title">Request</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Symfony</span>\<span class="title">Components</span>\<span class="title">HttpFoundation</span>\<span class="title">Response</span>;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>PSR-2要求类定义体的起始括号应该在类名之后新起一行写，结束括号必须在定义体后新起一行，就像上面那个例子一样。如果类扩展其他类或者实现接口，extends和implements关键字必须和类名同一行。</p>
+<p><strong>方法</strong></p>
+<p>方法定义体的括号位置应该可类定义的括号一样。方法的参数需要注意：起始圆括号之后和结束圆括号之前都没有空格，方法的每个参数后面都有一个逗号和空格。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;php</span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Project</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">($id = <span class="number">1</span>, $name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>可见性</strong></p>
+<p>类中的每个属性和方法都要声明可见性，即public、protected或者private，来决定类的内部和外部如何访问这些属性和方法。请不要再对属性使用var关键字，在私有方法前加下划线。如果雷属性或方法声明为abstract或final，这两个限定符必须放在可见性关键字之前。static限定符应该放在可见性关键字之后。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Project</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> $startCount = <span class="string">'1.0'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">static</span>::$startCount++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>控制结构</strong></p>
+<p>所有控制结构关键字后面都要有一个空格。控制结构关键字包括：if、elseif、else、switch、case、while、do while、for、foreach、try和catch。如果控制结构关键字后面有一对圆括号，起始圆括号之后和结束圆括号之前都没有空格。与类和方法的定义体不同，空间结构关键字后面的起始括号应该和控制结构关键字在同一行。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$num = <span class="number">0</span>;</span><br><span class="line">$flag = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($flag === <span class="keyword">false</span>) &#123;</span><br><span class="line">    <span class="keyword">while</span> ($num &amp;lt; <span class="number">10</span>) &#123;</span><br><span class="line">        $num++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="PSR-3"><a href="#PSR-3" class="headerlink" title="PSR-3"></a>PSR-3</h3><p>这个推荐规范讲的是一个接口，规定PHP日志记录器组件可以实现的方法。</p>
+<p>符合PSR-3推荐规范的PHP日志记录，必须包含一个实现<code>Psr\Log\LoggerInterface</code>接口的PHP类。PSR-3接口复用了<a href="http://tools.ietf.org/html/rfc5424" target="_blank" rel="noopener">RFC-5424系统日志协议</a>，规定要实现9个方法。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Psr</span>\<span class="title">Log</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">LoggerInterface</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">emergency</span><span class="params">($message, array $context = array<span class="params">()</span>)</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">alert</span><span class="params">($message, array $context = array<span class="params">()</span>)</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">critical</span><span class="params">($message, array $context = array<span class="params">()</span>)</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">error</span><span class="params">($message, array $context = array<span class="params">()</span>)</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">warning</span><span class="params">($message, array $context = array<span class="params">()</span>)</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">notice</span><span class="params">($message, array $context = array<span class="params">()</span>)</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">info</span><span class="params">($message, array $context = array<span class="params">()</span>)</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">debug</span><span class="params">($message, array $context = array<span class="params">()</span>)</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">log</span><span class="params">($level, $message, array $context = array<span class="params">()</span>)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每个方法对应RFC 5424协议的一个日志级别，而且都接受两个参数。第一个参数<code>$message</code>必须是一个字符串，或者是一个有<code>__toString()</code>方法的对象。第二个参数<code>$context</code>是可选的，这是一个数组，提供用于替换第一个参数中占位符的值。</p>
+<p><code>$context</code>参数用于构造复杂的日志消息。消息文本中可以使用占位符，例如<code>{placeholder_name}</code>。占位符由{，占位符名称和}组成，不能包含空格。<code>$context</code>参数的值是一个关联数组，键是占位符的名称，对应的值用于替换消息文本中的占位符。</p>
+<h3 id="PSR-4"><a href="#PSR-4" class="headerlink" title="PSR-4"></a>PSR-4</h3><p>PSR-4的精髓是把命名空间的前缀和文件系统中的目录对应起来。下面是一个PSR-4规范的自动加载器的例子：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string $class 完全限定的类名</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">spl_autoload(<span class="function"><span class="keyword">function</span> <span class="params">($class)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 项目命名空间前缀</span></span><br><span class="line">	$prefix = <span class="string">'Foo\\Bar\\'</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 命名空间对应的基目录</span></span><br><span class="line">	$base_dir = <span class="keyword">__DIR__</span> . <span class="string">'/src/'</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 比较传入的类名是否使用命名空间的前缀</span></span><br><span class="line">	$len = strlen($prefix);</span><br><span class="line">	<span class="keyword">if</span>(strncmp($prefix, $class, $len) !== <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 获取去除前缀的类名</span></span><br><span class="line">	$relative_class = substr($class, $len);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 获取类的地址</span></span><br><span class="line">	$file = $base_dir . str_replace(<span class="string">'\\'</span>, <span class="string">'/'</span>, $relative_class) . <span class="string">'.php'</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 导入文件</span></span><br><span class="line">	<span class="keyword">if</span>(file_exists($file) &#123;</span><br><span class="line">		<span class="keyword">require</span> $file;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ModernPHP 系列全集：<a href="/modernphp/">传送门</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Sidfate
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://sidfate.github.io/2016/09/13/tech/php/modernphp-psr/" title="ModernPHP PSR">https://sidfate.github.io/2016/09/13/tech/php/modernphp-psr/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/php/" rel="tag"># php</a>
+          
+            <a href="/tags/modernphp/" rel="tag"># modernphp</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/12/tech/php/modernphp-fig/" rel="next" title="ModernPHP FIG">
+                <i class="fa fa-chevron-left"></i> ModernPHP FIG
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/23/tech/php/modernphp-filter-verification-escape/" rel="prev" title="ModernPHP 过滤、验证和转义">
+                ModernPHP 过滤、验证和转义 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-594a15259106a479" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar_10110451.jpeg"
+                alt="Sidfate" />
+            
+              <p class="site-author-name" itemprop="name">Sidfate</p>
+              <p class="site-description motion-element" itemprop="description">You have a dream, I have a lot of reality.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Sidfate" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/115637168779477136122" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/sidfate" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PSR-1"><span class="nav-number">2.</span> <span class="nav-text">PSR-1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PSR-2"><span class="nav-number">3.</span> <span class="nav-text">PSR-2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PSR-3"><span class="nav-number">4.</span> <span class="nav-text">PSR-3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PSR-4"><span class="nav-number">5.</span> <span class="nav-text">PSR-4</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js""></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sidfate</span>
+
+  
+</div>
+
+<div class="powered-by">
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_pv">
+        <span id="busuanzi_value_site_pv"></span>
+    </span>
+
+    <span class="post-meta-divider">|</span>
+
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_container_site_uv">
+        <span id="busuanzi_value_site_uv"></span>
+    </span>
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+-->
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'u44zvDDv9SFM3E3X5cBBV3HX-9Nh9j0Va',
+        appKey: 'PoCQnPw2VnHeNML9frwynAW9',
+        placeholder: '给我一个认识你的机会',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("u44zvDDv9SFM3E3X5cBBV3HX-9Nh9j0Va", "PoCQnPw2VnHeNML9frwynAW9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
