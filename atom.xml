@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sidfate.github.io/"/>
-  <updated>2018-10-16T09:30:47.097Z</updated>
+  <updated>2018-11-08T09:39:53.362Z</updated>
   <id>https://sidfate.github.io/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>商城的重构</title>
+    <link href="https://sidfate.github.io/2018/11/08/share-store/"/>
+    <id>https://sidfate.github.io/2018/11/08/share-store/</id>
+    <published>2018-11-08T09:32:25.000Z</published>
+    <updated>2018-11-08T09:39:53.362Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>商城分享<br><a id="more"></a></p><h1 id="Gstore-项目重构"><a href="#Gstore-项目重构" class="headerlink" title="Gstore 项目重构"></a>Gstore 项目重构</h1><h3 id="为什么要重构？"><a href="#为什么要重构？" class="headerlink" title="为什么要重构？"></a>为什么要重构？</h3><p><a href="https://i.loli.net/2018/11/08/5be4017431b23.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2018/11/08/5be4017431b23.png" alt="商城.png"></a><br><a href="https://i.loli.net/2018/11/08/5be401742ff44.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2018/11/08/5be401742ff44.png" alt="商城体系-商品.png"></a><br><a href="https://i.loli.net/2018/11/08/5be40174283fb.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2018/11/08/5be40174283fb.png" alt="商城体系-订单.png"></a></p><p>主要原因有2个：</p><ol><li>当前商城的数据库中包含了太多无用的表或者结构，这些结构从一定程度上也影响了新需求的设计。也有很多结构是冗余的，无用的，设计不合理的，例如订单中保存了多个车辆相关的字段，msisdn，vin等等，这些实际上跟订单这个业务并不是完全关联的，可能只有部分场景相关。</li><li>现在4个商城的代码混杂在一个商城的项目中，这个项目中也混杂了多个领域的业务，商品库存、订单、分类、品牌、banner、优惠活动。最直接导致的一个问题就是，比如一个新需求是针对应用商城安装包（也被视为一个商品）的，那么一旦去做这个新需求，发生一些数据库或者代码的改动，其结果很可能会影响到其他的商城（虽然在代码中现在已经做了一些商城的分离处理，但是还是难免会有遗漏）。</li></ol><h3 id="怎么重构？"><a href="#怎么重构？" class="headerlink" title="怎么重构？"></a>怎么重构？</h3><p>结合上两条问题的起因，我们将整个商城也分为2步重构。</p><ol><li>拆分各个商城，抽离出各个具象的业务，以及保留商城元系统。</li><li>抽象化商城元系统，并拆分系统领域，即拆分子系统。</li></ol><h3 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h3><p><strong>子系统</strong>：</p><ul><li>tsp-store 商城库存系统<br>  商城元数据的系统</li><li>tsp-order 订单系统<br>  处理订单业务的系统</li><li>tsp-activity 商城活动系统<br>  处理商城活动相关业务的系统</li></ul><p><strong>具象系统</strong>：</p><ul><li>tsp-app-store 应用商城系统</li><li>tsp-theme-store 主题商城系统</li><li>tsp-point-store 积分商城系统</li><li>tsp-flow-store 流量商城系统</li></ul><h3 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h3><p>库存系统表结构：<br><img src="https://i.loli.net/2018/11/08/5be401f371375.png" alt="库存系统表结构.png"></p><p>应用商城表结构：</p><p><img src="https://i.loli.net/2018/11/08/5be401f36cefe.png" alt="应用商城表结构.png"></p><p>主题商城表结构：</p><p><img src="https://i.loli.net/2018/11/08/5be401f36b51e.png" alt="主题商城表结构.png"></p><p>订单系统表结构：</p><p><img src="https://i.loli.net/2018/11/08/5be401f36f0f4.png" alt="订单系统表结构.png"></p><p><strong>优点</strong>：</p><ul><li>各个商城专注于自己的业务，新业务没有耦合。</li><li>商城拆分成3个子系统，减少子系统之间的耦合。</li><li>后续维护方便，新来的同事也能很快入手，系统的扩展性也更好。</li></ul><p><strong>缺点</strong>：</p><ul><li>tsp-store中的元数据混在一起，单纯的作为一个仓库。</li><li>一定量上肯定是加大了开发成本。</li></ul><h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ol><li>像tsp-store这种元系统，本身只是提供给其他服务用，不提供对外的接口，这种服务是否符合微服务的整体架构？</li><li>如何很好的抽象出元数据？这个是比较重要的步骤，因为一旦元系统的结构变动，会影响到上层的服务（或者这里可以在元数据提供的入口中做一些低内聚的操作）</li><li>未来比较麻烦的一点是，为了兼容老商城的部分，新的商城系统主要负责做新的需求，如何能最大程度上从旧的商城剥离出来，这也是个需要注意的地方。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;商城分享&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>音乐篇 - 纯真</title>
+    <link href="https://sidfate.github.io/2018/10/28/art/music/%E7%BA%AF%E7%9C%9F/"/>
+    <id>https://sidfate.github.io/2018/10/28/art/music/纯真/</id>
+    <published>2018-10-28T02:01:21.000Z</published>
+    <updated>2018-10-28T02:20:52.286Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>无声之中你拉起我的手，我怎么感觉整个黑夜在颤动。<br><a id="more"></a></p><p>这首歌总让我想起一个故事，是别人的故事，还是自己的故事，却无法分辨。</p><p>出自五月天，但是我更喜欢梁静茹的版本。</p>        <div id="aplayer-woiHbSIU" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">            <pre class="aplayer-lrc-content"></pre>        </div>        <script>          var ap = new APlayer({            element: document.getElementById("aplayer-woiHbSIU"),            narrow: false,            autoplay: true,            showlrc: 3,            music: {              title: "纯真",              author: "梁静茹",              url: "http://dl.stream.qqmusic.qq.com/M800000S8aM11HmBOI.mp3?vkey=5BF86328B6BFBFF0E487DF35B130AEF9CD82407C71342162642CCEBB2F6D28D3777B362B251C4CD2601A1D9397160637621E3C003D37ED60&guid=5150825362&fromtag=1",              pic: "http://y.gtimg.cn/music/photo_new/T002R300x300M000003fXCg33QEqj2.jpg",              lrc: "https://sidfate.oss-cn-hangzhou.aliyuncs.com/lrc/%E7%BA%AF%E7%9C%9F-%E6%A2%81%E9%9D%99%E8%8C%B9.lrc"            }          });          window.aplayers || (window.aplayers = []);          window.aplayers.push(ap);        </script>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;无声之中你拉起我的手，我怎么感觉整个黑夜在颤动。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="art" scheme="https://sidfate.github.io/categories/art/"/>
+    
+      <category term="music" scheme="https://sidfate.github.io/categories/art/music/"/>
+    
+    
+      <category term="music" scheme="https://sidfate.github.io/tags/music/"/>
+    
+  </entry>
   
   <entry>
     <title>纽北赛道</title>
@@ -465,56 +507,6 @@
       <category term="php" scheme="https://sidfate.github.io/tags/php/"/>
     
       <category term="modernphp" scheme="https://sidfate.github.io/tags/modernphp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ModernPHP 命名空间</title>
-    <link href="https://sidfate.github.io/2016/08/27/tech/php/modernphp-namespace/"/>
-    <id>https://sidfate.github.io/2016/08/27/tech/php/modernphp-namespace/</id>
-    <published>2016-08-27T08:28:00.000Z</published>
-    <updated>2018-10-16T10:06:25.781Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本文介绍PHP中命名空间的相关使用和概念。<br><a id="more"></a></p><h3 id="0x00-声明"><a href="#0x00-声明" class="headerlink" title="0x00 声明"></a>0x00 声明</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Symfony</span>\<span class="title">Component</span>\<span class="title">HttpFoundation</span>;</span><br></pre></td></tr></table></figure><p>这一行代码是PHP命名空间声明语句。声明语句始终应该放在<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">PHP命名空间与操作系统的物理文件系统不同，这是一个虚拟的概念，没必要和文件系统的目录结构完全对应。但是，大多数的PHP组件为了兼容广泛使用的[PSR-4自动加载器标准](https://phphub.org/topics/2081)，会把子命名空间放到文件系统的子目录下。</span><br><span class="line"></span><br><span class="line">### 0x01 导入</span><br><span class="line">```php</span><br><span class="line">use Symfony\Component\HttpFoundation\Response;</span><br><span class="line"> </span><br><span class="line">$r = new Response();</span><br></pre></td></tr></table></figure></p><p>当然，你还可以用别名的方式导入：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Symfony</span>\<span class="title">Component</span>\<span class="title">HttpFoundation</span>\<span class="title">Response</span> <span class="title">as</span> <span class="title">Res</span>;</span><br><span class="line"> </span><br><span class="line">$r = <span class="keyword">new</span> Res();</span><br></pre></td></tr></table></figure></p><p>应该在PHP文件顶部使用use关键字导入代码，而且要放在<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">从PHP5.6开始还可以导入函数和常量。导入函数时需要使用use func，导入常量时使用use constant。</span><br><span class="line">```php</span><br><span class="line">use func Namespace\funcName;</span><br><span class="line">use constant Namespace\CONST_NAME;</span><br><span class="line"> </span><br><span class="line">funcName();</span><br><span class="line">echo CONST_NAME;</span><br></pre></td></tr></table></figure></p><h3 id="0x02-全局命名空间"><a href="#0x02-全局命名空间" class="headerlink" title="0x02 全局命名空间"></a>0x02 全局命名空间</h3><p>如果需要在命名空间中引用其他命名空间的类、接口、函数或常量，必须使用完全限定的PHP类名（命名空间+类名），或者使用use关键字提前导入至当前命名空间。</p><p>有些代码没有命名空间，这些代码在全局命名空间中，例如PHP原生的Exception类。在命名空间中引入全局命名空间的代码时，需要在类、接口、函数或者常量前加上\符号。例如下面这个例子中，<figure class="highlight plain"><figcaption><span>方法会报错，因为PHP会去搜索当前命名空间下的Exception，也就是会去搜索\My\Space\Foo\Exception类，但是这个类不存在。因此我们需要在Exception类前加上\前缀，表名要去全局命名空间中查找该类。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">一个错误的栗子：</span><br><span class="line">```php</span><br><span class="line">namespace My\Space;</span><br><span class="line">class Foo()</span><br><span class="line">&#123;</span><br><span class="line">    public function run()</span><br><span class="line">    &#123;</span><br><span class="line">        $e = new Exception();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>真确的栗子：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">My</span>\<span class="title">Space</span>;</span><br><span class="line">class Foo()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $e = <span class="keyword">new</span> \<span class="keyword">Exception</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><blockquote><p>ModernPHP 系列全集：<a href="/modernphp/">传送门</a></p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文介绍PHP中命名空间的相关使用和概念。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="tech" scheme="https://sidfate.github.io/categories/tech/"/>
-    
-      <category term="php" scheme="https://sidfate.github.io/categories/tech/php/"/>
-    
-    
-      <category term="php" scheme="https://sidfate.github.io/tags/php/"/>
-    
-      <category term="modernphp" scheme="https://sidfate.github.io/tags/modernphp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux 定时任务crontab</title>
-    <link href="https://sidfate.github.io/2016/08/22/tech/devops/linux-crontab/"/>
-    <id>https://sidfate.github.io/2016/08/22/tech/devops/linux-crontab/</id>
-    <published>2016-08-22T09:12:00.000Z</published>
-    <updated>2018-10-14T02:47:04.965Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Linux部署篇 - 如何使用crontab完成定时任务。<br><a id="more"></a></p><h3 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h3><p>对应于windows中的定时计划，linux 中有个crontab来处理定时任务。那么常见的定时任务有哪些呢，例如每天凌晨1点自动备份数据库，每隔1小时执行爬虫脚本爬取信息等等。</p><h3 id="0x01-常用命令"><a href="#0x01-常用命令" class="headerlink" title="0x01 常用命令"></a>0x01 常用命令</h3><ul><li><code>crontab -l</code> 列出当前的的定时任务，或者<code>vi /etc/crontab</code></li><li><code>crontab -e</code> 编辑定时脚本</li></ul><h3 id="0x02-添加任务"><a href="#0x02-添加任务" class="headerlink" title="0x02 添加任务"></a>0x02 添加任务</h3><p>分　时　日　月　周 command</p><ul><li>第1列表示分钟1～59 每分钟用<em>或者 </em>/1表示 </li><li>第2列表示小时1～23（0表示0点） </li><li>第3列表示日期1～31 </li><li>第4列表示月份1～12 </li><li>第5列标识号星期0～6（0表示星期天） </li><li>第6列要运行的命令 </li></ul><p>一些例子：</p><ol><li><p>每隔一分钟执行<code>root /opt/bin/test-cron.sh</code></p><pre><code>*/1 * * * * root /opt/bin/test-cron.sh  </code></pre></li><li><p>每天4点执行<code>/home/dbbackup/db2backup.sh backup</code></p><pre><code>0 4 * * * /home/dbbackup/db2backup.sh backup</code></pre></li></ol><h3 id="0x02-注意"><a href="#0x02-注意" class="headerlink" title="0x02 注意"></a>0x02 注意</h3><ol><li><p>查看任务执行</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> tail -f /var/log/cron</span><br></pre></td></tr></table></figure></li><li><p>如果你的crontab没有生效，你得查看下<code>crond</code>服务有没有开启</p> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> service crond status</span><br><span class="line"><span class="meta">$</span> service crond restart</span><br></pre></td></tr></table></figure></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Linux部署篇 - 如何使用crontab完成定时任务。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="tech" scheme="https://sidfate.github.io/categories/tech/"/>
-    
-      <category term="devops" scheme="https://sidfate.github.io/categories/tech/devops/"/>
-    
-    
-      <category term="linux" scheme="https://sidfate.github.io/tags/linux/"/>
     
   </entry>
   
